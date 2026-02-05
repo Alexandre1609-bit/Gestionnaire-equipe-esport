@@ -1,14 +1,19 @@
 package controllers;
 import dao.PlayerDAO;
 import models.Player;
+import view.PlayerView;
 
+import javax.swing.text.View;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerController {
     private PlayerDAO playerDAO;
+    private PlayerView playerView;
 
-    public PlayerController(PlayerDAO playerDAO) {
+    public PlayerController(PlayerDAO playerDAO, PlayerView playerView) {
         this.playerDAO = playerDAO;
+        this.playerView = playerView;
     }
 
 
@@ -17,35 +22,47 @@ public class PlayerController {
 
         while (run) {
 
-            int choice = player.View.startMenue();
-            System.out.printf("=== Welcome ===");
+            int choice = playerView.startMenue();
 
             switch(choice) {
                 case 1:
                     //Ajouter un joueur
-                    String name = /*Faire une demande via la vue*/;
-                    String team = /*idem*/;
-                    Player player = new Player(null, null);
+                    String name = playerView.askName();
+                    String team = playerView.askTeam();
+                    Player player = new Player(name, team);
                     playerDAO.createPlayer(player);
-                    //Ajouter message de confirmation
+                    playerView.showMessage("Joueur ajouté avec succès");
                     break;
 
                 case 2:
                     //Afficher la liste complète des joueurs
-                    List<player> players = playerDAO.readAllPlayerInfo();
+                    List<Player> players = playerDAO.readAllPlayerInfo();
+                    playerView.displayPlayer(players);
+
                     break;
 
                 case 3:
-                    //Modifier un joueur (nom et / ou équipe via id joueur)
-                    String newName = /*demande*/;
-                    String newTeam = /*idem*/;
-                    playerDAO.updatePlayer(newName, newTeam, 0);
+                    //Afficher le kd des joueurs
+                    List<Player> p = playerDAO.readAllPlayerInfo();
+                    playerView.getKd(p);
                     break;
 
                 case 4:
+                    //Modifier un joueur (nom et / ou équipe via id joueur)
+
+                    String newName = playerView.askNewName();
+                    String newTeam = playerView.askNewTeamName();
+                    playerDAO.updatePlayer(newName, newTeam, 0);
+                    break;
+
+                case 5:
                     //Supprimer un joueur via l'id
-                    int id = /* demander l'id via vue*/;
-                    playerDAO.deletePlayer(id);
+                    List<Player> p2d = playerDAO.readAllPlayerInfo();
+                    playerView.displayPlayer(p2d);
+                    int playerToDeleteId = playerView.askDeletePlayer();
+                    playerDAO.deletePlayer(playerToDeleteId);
+
+
             }
         }
     }
