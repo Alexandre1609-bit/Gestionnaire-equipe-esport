@@ -1,5 +1,7 @@
 package models;
 
+import java.util.List;
+
 public class Player {
     private String name;
     private String team;
@@ -67,5 +69,15 @@ public class Player {
 
     public void setDeathCount(int deathCount) {
         this.deathCount = deathCount;
+    }
+
+    public double calculateKd() {
+
+        double killCount = this.getKillCount();
+        double deathCount = this.getDeathCount();
+        if (deathCount == 0) {
+            return killCount;
+        }
+        return killCount / deathCount;
     }
 }
