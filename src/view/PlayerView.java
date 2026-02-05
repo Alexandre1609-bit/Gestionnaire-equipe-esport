@@ -86,8 +86,9 @@ public class PlayerView {
         return newTeam;
     }
 
-    public int askId(Player p) {
+    public int askDeletePlayer() {
+        System.out.println("Entrez l'id du joueur que vous voulez supprimer : ");
 
-        return p.getPlayerId();
+        int toDeleteId = scanner.nextInt();
     }
 }
