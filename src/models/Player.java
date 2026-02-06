@@ -4,13 +4,13 @@ import java.util.List;
 
 public class Player {
     private String name;
-    private String team;
+    private Team team;
     private int score;
     private int playerId;
     private int killCount;
     private int deathCount;
 
-    public Player(String name, String team, int score, int playerId, int killCount, int deathCount) {
+    public Player(String name, Team team, int score, int playerId, int killCount, int deathCount) {
         this.name = name;
         this.team = team;
         this.score = score;
@@ -19,7 +19,7 @@ public class Player {
         this.deathCount = deathCount;
     }
 
-    public Player(String name, String team) {
+    public Player(String name, Team team) {
         this(name, team, 0, 0, 0, 0);
     }
 
@@ -31,11 +31,11 @@ public class Player {
         this.name = name;
     }
 
-    public String getTeam() {
+    public Team getTeam() {
         return team;
     }
 
-    public void setTeam(String team) {
+    public void setTeam(Team team) {
         this.team = team;
     }
 
