@@ -6,13 +6,13 @@ public class Team {
     private String name;
     private String tag;
     private LocalDate foundedDate;
-    private int id;
+    private int teamId;
 
-    public Team(String name, String tag, LocalDate foundedDate, int id) {
+    public Team(String name, String tag, LocalDate foundedDate, int teamId) {
         this.name = name;
         this.tag = tag;
         this.foundedDate = foundedDate;
-        this.id = id;
+        this.teamId = teamId;
     }
 
     public Team(String name, String tag, LocalDate foundedDate) {
@@ -43,11 +43,11 @@ public class Team {
         this.foundedDate = foundedDate;
     }
 
-    public int getId() {
-        return id;
+    public int getTeamId() {
+        return teamId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setTeamId(int teamId) {
+        this.teamId = teamId;
     }
 }
