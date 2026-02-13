@@ -12,13 +12,14 @@ Le code est structuré selon le modèle MVC (Modèle-Vue-Contrôleur) avec une c
 
 # Fonctionnalités actuelles
 
-## Joueurs : Ajout, affichage de la liste, modification et suppression.
+Joueurs : Ajout, affichage de la liste, modification et suppression.
 
-## Stats : Calcul automatique du ratio K/D dans le modèle.
+Stats : Calcul automatique du ratio K/D dans le modèle.
 
-## Base de données : Connexion via JDBC avec requêtes sécurisées.
+Base de données : Connexion via JDBC avec requêtes sécurisées.
 
-# À venir
+# À venir
+
 Création et gestion des équipes.
 
 Liaison entre un joueur et son équipe (clés étrangères).
