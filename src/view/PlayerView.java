@@ -41,7 +41,7 @@ public class PlayerView {
 
         System.out.println("=== Liste des joueurs ===");
         for (Player p : players) {
-            System.out.println("Nom :" + p.getName() + "Team :" + p.getTeam() + "id : " + p.getPlayerId());
+            System.out.println("Nom :" + p.getName() + "Team :" + p.getTeam().getName() + "id joueur : " + p.getPlayerId() + "id team : " + p.getTeam().getTeamId());
         }
     }
 
@@ -65,11 +65,12 @@ public class PlayerView {
         return nom;
     }
 
-    public String askTeam() {
-        System.out.println("Entrez votre team : ");
-        String team = scanner.nextLine();
+    public int askTeam() {
+        //à changer ! Proposer la liste des équipe avec leur ID et demander de rentrer l'id concerné !!
+        System.out.println("Entrez l'id votre team : ");
+        int teamId = scanner.nextInt();
 
-        return team;
+        return teamId;
     }
 
     public String askNewName() {
@@ -90,5 +91,6 @@ public class PlayerView {
         System.out.println("Entrez l'id du joueur que vous voulez supprimer : ");
 
         int toDeleteId = scanner.nextInt();
+        return toDeleteId;
     }
 }
