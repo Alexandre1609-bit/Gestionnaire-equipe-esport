@@ -31,7 +31,7 @@ public class PlayerDAO {
                     score,
                     killCount,
                     deathCount
-                    VALUES (?, ?, ?, ?, ?, ?))""";
+                    VALUES (?, ?, ?, ?, ?, ?)""";
 
             try (PreparedStatement ps = con.prepareStatement(sql)) {
                 ps.setString(1, playerToAdd.getName());
@@ -104,7 +104,7 @@ public class PlayerDAO {
             Connection con = dataSource.getConnection();
             String sql = """
                     SELECT
-                    p.name AS player_name, t.name AS team_name, t.tag AS team_tag, t.teamId AS team_id
+                    p.name AS player_name, p.score AS player_score, P.playerId as player_id, p.killCount AS player_kc, p.deathCount AS player_dc, t.name AS team_name, t.tag AS team_tag, t.teamId AS team_id
                     
                     FROM player AS p
                     LEFT JOIN team AS t 
@@ -117,11 +117,15 @@ public class PlayerDAO {
 
                 while (rs.next()) {
                     String name = rs.getString("player_name");
+                    int score = rs.getInt("player_score");
+                    int playerId = rs.getInt("player_Id");
+                    int killCount = rs.getInt("player_kc");
+                    int deathCount = rs.getInt("player_dc");
                     String team = rs.getString("team_name");
                     String tag = rs.getString("team_tag");
                     int team_id = rs.getInt("team_id");
                     Team t1 = new Team(team, tag, null, team_id);
-                    test = new Player(name, t1, 0, 0, 0, 0);
+                    test = new Player(name, t1, score, playerId, killCount, deathCount);
                 }
             }
             con.close();
@@ -145,6 +149,7 @@ public class PlayerDAO {
                 ps.setInt(2, newTeam.getTeamId());
                 ps.setInt(3, id);
 
+                ps.executeUpdate();
                 ps.close();
                 con.close();
             }
@@ -165,6 +170,7 @@ public class PlayerDAO {
             try (PreparedStatement ps = con.prepareStatement(sql)) {
                 ps.setInt(1, id);
 
+                ps.executeUpdate();
                 ps.close();
                 con.close();
             }
@@ -172,6 +178,7 @@ public class PlayerDAO {
             e.printStackTrace();
         }
     }
+
 
 
 }
