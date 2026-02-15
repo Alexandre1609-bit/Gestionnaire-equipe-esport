@@ -98,7 +98,7 @@ public class PlayerDAO {
         return players;
     }
 
-    public Player getPlayerInfo(int id) {
+    public Player findById(int id) {
         Player test = null;
         try {
             Connection con = dataSource.getConnection();
