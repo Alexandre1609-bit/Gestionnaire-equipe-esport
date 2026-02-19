@@ -1,3 +1,6 @@
+#Pause dans le projet
+
+
 # Esport League Manager (WIP)
 
 Ce projet est un travail étudiant de gestion de ligue E-sport. L'objectif est de créer une application console permettant de gérer des joueurs, leurs statistiques et leurs équipes.
